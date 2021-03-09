@@ -22,20 +22,31 @@ screen.onkey(left_paddle.down, 'Down')
 
 game_is_on = True
 while game_is_on:
-    screen.update()
-    # time.sleep(0.1)
-    ball.move()
-    # when the ball reaches either of these y-coordinates, wall_bounce() changes the sign in front of self.move_y
-    if ball.ycor() > 280 or ball.ycor() < -280:
-        ball.wall_bounce()
+    point_scored = False
+    ball.goto(0, 0)
+    while not point_scored:
+        screen.update()
+        # time.sleep(0.1)
+        ball.move()
+        # when the ball reaches either of these y-coordinates, wall_bounce() changes the sign in front of self.move_y
+        if ball.ycor() > 280 or ball.ycor() < -280:
+            ball.wall_bounce()
 
-    # Because of the stretched nature of the paddle, using ball.distance(paddle) alone will not work.
-    # This is because the distance is measured from the center of each object.
-    # the ends of the paddles will be further away
-    # Therefore I had to check for a max xcor() being reached first. Followed by a larger distance of 50px
-    if ball.xcor() > 330 or ball.xcor() < -330:
-        if ball.distance(left_paddle) < 50 or ball.distance(right_paddle) < 50:
-            ball.paddle_bounce()
+        # Because of the stretched nature of the paddle, using ball.distance(paddle) alone will not work.
+        # This is because the distance is measured from the center of each object.
+        # the ends of the paddles will be further away
+        # Therefore I had to check for a max xcor() being reached first. Followed by a larger distance of 50px
+        if ball.xcor() > 330 or ball.xcor() < -330:
+            if ball.distance(left_paddle) < 50 or ball.distance(right_paddle) < 50:
+                ball.paddle_bounce()
 
+        if ball.xcor() > 400:
+            print("player 1 point")
+            point_scored = True
+
+        elif ball.xcor() < -400:
+            print("player 2 point")
+            point_scored = True
+            
 screen.exitonclick()
 

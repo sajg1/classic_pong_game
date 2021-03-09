@@ -6,13 +6,19 @@ class Ball(Turtle):
         self.shape("circle")
         self.color("white")
         self.penup()
+        self.move_x = 3
+        self.move_y = 3
 
-
+    #  general movement of ball
     def move(self):
-        new_x = self.xcor() + 2
-        new_y = self.ycor() + 2
+        new_x = self.xcor() + self.move_x
+        new_y = self.ycor() + self.move_y
         self.goto(new_x, new_y)
         print(new_x, new_y)
+
+
+    def wall_bounce(self):
+        self.move_y *= -1
 
 
 

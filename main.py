@@ -25,6 +25,9 @@ while game_is_on:
     screen.update()
     # time.sleep(0.1)
     ball.move()
-    
+    # when the ball reaches either of these y-coordinates, wall_bounce() changes the sign in front of self.move_y
+    if ball.ycor() > 280 or ball.ycor() < -280:
+        ball.wall_bounce()
+
 screen.exitonclick()
 

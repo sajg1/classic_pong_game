@@ -19,3 +19,5 @@ class Paddle(Turtle):
     def down(self):
         if self.ycor() > -(self.width/2) + 70:
             self.backward(20)
+
+

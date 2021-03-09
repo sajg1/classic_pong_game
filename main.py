@@ -29,5 +29,13 @@ while game_is_on:
     if ball.ycor() > 280 or ball.ycor() < -280:
         ball.wall_bounce()
 
+    # Because of the stretched nature of the paddle, using ball.distance(paddle) alone will not work.
+    # This is because the distance is measured from the center of each object.
+    # the ends of the paddles will be further away
+    # Therefore I had to check for a max xcor() being reached first. Followed by a larger distance of 50px
+    if ball.xcor() > 330 or ball.xcor() < -330:
+        if ball.distance(left_paddle) < 50 or ball.distance(right_paddle) < 50:
+            ball.paddle_bounce()
+
 screen.exitonclick()
 

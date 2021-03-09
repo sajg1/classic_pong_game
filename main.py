@@ -1,6 +1,8 @@
 from turtle import Screen
 from paddle import Paddle
 from ball import Ball
+from scoreboard import Scoreboard
+
 import time
 
 screen = Screen()
@@ -12,6 +14,7 @@ screen.tracer(0)
 right_paddle = Paddle(position=(-350,0), screen_width=600)
 left_paddle = Paddle(position=(350,0), screen_width=600)
 ball = Ball()
+scoreboard = Scoreboard()
 screen.listen()
 
 screen.onkey(right_paddle.up, "w")
@@ -22,6 +25,7 @@ screen.onkey(left_paddle.down, 'Down')
 
 game_is_on = True
 while game_is_on:
+    scoreboard.show_score()
     point_scored = False
     ball.goto(0, 0)
     while not point_scored:
@@ -43,10 +47,12 @@ while game_is_on:
         if ball.xcor() > 400:
             print("player 1 point")
             point_scored = True
+            scoreboard.player_1 +=1
 
         elif ball.xcor() < -400:
             print("player 2 point")
             point_scored = True
-            
+            scoreboard.player_2 += 1
+
 screen.exitonclick()
 

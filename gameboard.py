@@ -16,3 +16,9 @@ class Gameboard(Turtle):
             self.forward(30)
             self.penup()
             self.forward(30)
+
+    def players(self):
+        self.goto(-200, -275)
+        self.write("Player 1", align='center', font=('Arial', 26))
+        self.goto(200, -275)
+        self.write("Player 2", align='center', font=('Arial', 26))

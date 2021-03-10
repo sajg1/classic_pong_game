@@ -22,7 +22,7 @@ class Ball(Turtle):
     def paddle_bounce(self):
         self.move_x *= -1
         # increases the speed of the ball movement incrementally when in contact with paddle
-        self.move_speed *= 0.9
+        self.move_speed *= 0.8
 
     def reset_position(self):
         self.goto(0, 0)

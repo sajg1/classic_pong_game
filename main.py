@@ -11,18 +11,18 @@ screen = Screen()
 
 def play_pong():
 
-    right_paddle = Paddle(position=(-350, 0), screen_width=600)
-    left_paddle = Paddle(position=(350, 0), screen_width=600)
+    right_paddle = Paddle(position=(350, 0), screen_width=600)
+    left_paddle = Paddle(position=(-350, 0), screen_width=600)
     ball = Ball()
     scoreboard = Scoreboard()
     gameboard = Gameboard()
 
     screen.listen()
 
-    screen.onkey(right_paddle.up, "w")
-    screen.onkey(right_paddle.down, "s")
-    screen.onkey(left_paddle.up, "Up")
-    screen.onkey(left_paddle.down, 'Down')
+    screen.onkey(right_paddle.up, "Up")
+    screen.onkey(right_paddle.down, "Down")
+    screen.onkey(left_paddle.up, "w")
+    screen.onkey(left_paddle.down, 's')
 
     gameboard.centerline()
     game_is_on = True
@@ -47,10 +47,11 @@ def play_pong():
             # This is because the distance is measured from the center of each object.
             # the ends of the paddles will be further away
             # Therefore I had to check for a max xcor() being reached first. Followed by a larger distance of 50px
-            if ball.xcor() > 315 or ball.xcor() < -315:
-                if ball.distance(left_paddle) < 90 or ball.distance(right_paddle) < 90:
+            if 310 < ball.xcor() < 330 or -310 > ball.xcor() > -330:
+                print(ball.xcor())
+                if ball.distance(right_paddle) < 80 or ball.distance(left_paddle) < 80:
+                    print("in contact")
                     ball.paddle_bounce()
-                    print(ball.move_speed)
 
             if ball.xcor() > 400:
                 point_scored = True
